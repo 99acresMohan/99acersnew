@@ -12,7 +12,8 @@ export type Property = {
 };
 
 export async function fetchProperties(query?: { status?: string; type?: string }): Promise<Property[]> {
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3000';
+  const railwayDomain = process.env.RAILWAY_PRIVATE_DOMAIN ? `http://${process.env.RAILWAY_PRIVATE_DOMAIN}` : undefined;
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? railwayDomain ?? 'http://localhost:3000';
   const url = new URL(`${apiBase}/api/properties`);
   if (query?.status) url.searchParams.set('status', query.status);
   if (query?.type) url.searchParams.set('type', query.type);
