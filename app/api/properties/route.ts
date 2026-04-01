@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   try {
     const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB || "realestate");
+    const db = client.db(process.env.MONGODB_DB || "99acersnew");
     const collection = db.collection("properties");
 
     const query: Record<string, string> = {};
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     try {
       // Try to save to MongoDB
       const client = await clientPromise;
-      const db = client.db(process.env.MONGODB_DB || "realestate");
+      const db = client.db(process.env.MONGODB_DB || "99acersnew");
       const collection = db.collection("properties");
       const result = await collection.insertOne(propertyData);
 

@@ -34,8 +34,8 @@ npm install
 
 3. Create `.env.local` file with MongoDB credentials:
 ```bash
-MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/realestate?retryWrites=true&w=majority&appName=Cluster0
-MONGODB_DB=realestate
+MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/99acersnew?retryWrites=true&w=majority&appName=Cluster0
+MONGODB_DB=99acersnew
 NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
 ```
 
