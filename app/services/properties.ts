@@ -12,13 +12,13 @@ export type Property = {
 };
 
 export async function fetchProperties(query?: { status?: string; type?: string }): Promise<Property[]> {
-  const railwayDomain = process.env.RAILWAY_PRIVATE_DOMAIN ? `http://${process.env.RAILWAY_PRIVATE_DOMAIN}` : undefined;
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? railwayDomain ?? 'http://localhost:3000';
-  const url = new URL(`${apiBase}/api/properties`);
-  if (query?.status) url.searchParams.set('status', query.status);
-  if (query?.type) url.searchParams.set('type', query.type);
+  const url = '/api/properties';
+  const params = new URLSearchParams();
+  if (query?.status) params.append('status', query.status);
+  if (query?.type) params.append('type', query.type);
+  const fullUrl = params.toString() ? `${url}?${params.toString()}` : url;
 
-  const res = await fetch(url.toString(), { cache: 'no-store' });
+  const res = await fetch(fullUrl, { cache: 'no-store' });
   if (!res.ok) {
     const text = await res.text();
     console.error('Failed to fetch properties', res.status, text);
