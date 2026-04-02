@@ -16,8 +16,8 @@ export async function fetchProperties(query?: { status?: string; type?: string }
   const params = new URLSearchParams();
   if (query?.status) params.append('status', query.status);
   if (query?.type) params.append('type', query.type);
-  const fullUrl = params.toString() ? `${url}?${params.toString()}` : url;
-
+  const baseUrl = typeof window === 'undefined' ? 'http://localhost:8080' : '';
+  const fullUrl = baseUrl + url + (params.toString() ? `?${params.toString()}` : '');
   const res = await fetch(fullUrl, { cache: 'no-store' });
   if (!res.ok) {
     const text = await res.text();
